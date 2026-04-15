@@ -11,14 +11,18 @@ header {
         justify-content: space-between;
         align-items: center;
         padding: 0.8rem 20px;
+        max-width: 100%;
     }
 
     .nav-logo {
         text-decoration: none;
+        flex-shrink: 0;
+        
         .site-title {
             color: black;
             font-weight: bold;
             font-size: 1.3rem;
+            white-space: nowrap;
         }
     }
 
@@ -80,7 +84,9 @@ header {
             transform: translateX(0);
             padding-top: 0;
             display: flex;
+            justify-content: flex-end;
             box-shadow: none;
+            flex-grow: 1;
         }
 
         .nav-list {
@@ -92,7 +98,9 @@ header {
 
             @media (min-width: 1100px) {
                 flex-direction: row;
-                gap: 20px;
+                gap: 12px;
+                justify-content: flex-end;
+                width: 100%;
             }
 
             li {
@@ -100,6 +108,7 @@ header {
                 
                 @media (min-width: 1100px) {
                     border: none;
+                    white-space: nowrap;
                 }
 
                 a {
@@ -112,6 +121,7 @@ header {
 
                     @media (min-width: 1100px) {
                         padding: 0.5rem 0;
+                        font-size: 0.9rem;
                     }
 
                     &:hover {

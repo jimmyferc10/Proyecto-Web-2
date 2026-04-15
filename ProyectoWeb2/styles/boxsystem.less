@@ -1,0 +1,44 @@
+@space-keys: 1 2 3 4 5 6 7 8 10 12 16 20 80 96;
+@space-vals: 0.25 0.5 0.75 1 1.25 1.5 1.75 2 2.5 3 4 5 20 24;
+
+.generarUtilitarios(@prefijo, @selector, @reglas...) {
+    .-aplicarPropiedades(@rem, @count) when (@count > 0) {
+        @prop : extract(@reglas, @count);
+        @{prop} : unit(@rem, rem);
+        .-aplicarPropiedades(@rem, @count - 1);
+    }
+
+    .-aplicarPropiedades(@rem, 0) {}
+
+    .-iterarPor(@i) when (@i =< length(@space-keys)) {
+        @key: extract(@space-keys, @i);
+        @val: extract(@space-vals, @i);
+
+        .@{prefijo}@{selector}-@{key} {
+            .-aplicarPropiedades(@val, length(@reglas));
+        }
+
+        .-iterarPor(@i + 1);
+    }
+    .-iterarPor(@i) when (@i > length(@space-keys)) {}
+    .-iterarPor(1);
+}
+
+.generarUtilitarios(~'', m, margin);
+.generarUtilitarios(~'', mb, margin-bottom);
+.generarUtilitarios(~'', mt, margin-top);
+.generarUtilitarios(~'', ml, margin-left);
+.generarUtilitarios(~'', mr, margin-right);
+.generarUtilitarios(~'', mx, margin-left, margin-right);
+.generarUtilitarios(~'', my, margin-top, margin-bottom);
+
+.generarUtilitarios(~'', p, padding);
+.generarUtilitarios(~'', pb, padding-bottom);
+.generarUtilitarios(~'', pt, padding-top);
+.generarUtilitarios(~'', pl, padding-left);
+.generarUtilitarios(~'', pr, padding-right);
+.generarUtilitarios(~'', px, padding-left, padding-right);
+.generarUtilitarios(~'', py, padding-top, padding-bottom);
+
+
+.generarUtilitarios(~'', gap, gap);
